@@ -103,21 +103,6 @@ class CartAssociations extends Module
         return $this->display(__FILE__, 'admin-product-tab.tpl');
     }
 
-    private function getOtherProductsIds($id_product, $active_only = true): array
-    {
-        $query = new DbQuery();
-        $query->select('id_product_2');
-        $query->from('cart_association',  'ca');
-        if ($active_only) {
-            $query->innerJoin('product', 'p', 'p.id_product = ca.id_product_2 AND p.active = 1');
-        }
-        $query->where('ca.id_product_1 = '.(int)$id_product);
-        $query->orderBy('ca.position ASC');
-
-        $products = Db::getInstance()->executeS($query);
-        $id_products = array_map('intval', array_column($products, 'id_product_2'));
-        return array_unique($id_products);
-    }
 
     public function hookActionProductUpdate($params)
     {
