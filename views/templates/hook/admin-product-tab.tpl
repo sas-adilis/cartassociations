@@ -13,6 +13,7 @@
 			<input type="text" id="cart_associations_products" class="form-control search typeahead cart_associations_products" placeholder="{l s='Search and add a related product' mod='cartassociations'}" autocomplete="off">
 		</div>
 
+			<br/>
 			<ul id="cart_associations_products-data" class="typeahead-list nostyle col-sm-12 product-list">
 			{foreach $cart_associations as $cart_association}
 				<li class="media">

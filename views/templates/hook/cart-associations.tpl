@@ -49,7 +49,7 @@
                     <div class="col col-auto col-md qty">
                         {if $cart_association.id_product_attribute}
                             <a class="btn btn-product-list" href="{$cart_association.url}" >
-                                {l s='View' d='Shop.Theme.Actions'}
+                                {l s='View' mod='cartassociations'}
                             </a>
                         {else}
                             <form action="{$urls.pages.cart}" method="post">
@@ -65,7 +65,7 @@
                                                 disabled
                                             {/if}
                                     >
-                                        {l s='Add' d='Shop.Theme.Actions'}
+                                        {l s='Add' mod='cartassociations'}
                                     </button>
                                 </div>
                             </form>

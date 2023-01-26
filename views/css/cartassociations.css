@@ -43,3 +43,7 @@
     left: calc(var(--line-offset) * -1);
     width: var(--line-offset);
 }
+
+.cart-item-association .remove-association {
+    cursor: pointer;
+}
