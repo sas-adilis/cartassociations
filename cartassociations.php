@@ -191,7 +191,14 @@ class CartAssociations extends Module
             }
             $sql->join(Product::sqlStock('p', 0));
             $sql->orderBy('ca.position ASC');
-            
+
+            if (isset($_COOKIE['cart_associations_ignore'])) {
+                $ids_to_ignore = array_unique(array_filter(explode('|', $_COOKIE['cart_associations_ignore']), function($id) {
+                    return (int)$id > 0;
+                }));
+                $sql->where('ca.id_product_2 NOT IN ('.implode(',', $ids_to_ignore).')');
+            }
+
             $products = Db::getInstance()->executeS($sql);
 
             if (count($products)) {
@@ -243,6 +250,8 @@ class CartAssociations extends Module
     }
 
     public function hookDisplayHeader() {
-        $this->context->controller->registerStylesheet('modules-cartassociations', 'modules/'.$this->name.'/views/css/cartassociations.css', ['media' => 'all', 'priority' => 150]);
+        $this->context->controller->registerStylesheet('modules-'.$this->name.'-css', 'modules/'.$this->name.'/views/css/cartassociations.css', ['media' => 'all', 'priority' => 150]);
+        $this->context->controller->registerJavascript('modules-'.$this->name.'-js', 'modules/'.$this->name.'/views/js/cartassociations.js', ['position' => 'bottom', 'priority' => 150]);
     }
+
 }

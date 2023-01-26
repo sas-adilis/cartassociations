@@ -48,10 +48,7 @@
                     </div>
                     <div class="col col-auto col-md qty">
                         {if $cart_association.id_product_attribute}
-                            <a
-                                    class="btn btn-product-list"
-                                    href="{$cart_association.url}"
-                            >
+                            <a class="btn btn-product-list" href="{$cart_association.url}" >
                                 {l s='View' d='Shop.Theme.Actions'}
                             </a>
                         {else}
@@ -75,7 +72,7 @@
                         {/if}
                     </div>
                     <div class="col col-auto col-md price">
-                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <i class="remove-association fa fa-times" aria-hidden="true" data-id-product="{$cart_association.id_product}"></i>
                     </div>
                     <div class="col col-auto"></div>
                 </div>
