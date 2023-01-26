@@ -1,9 +1,6 @@
 {foreach $cart_associations as $cart_association}
     <li class="cart-item cart-item-association bg-light">
-
         <div class="product-line-grid row align-items-center small-gutters">
-
-
             <!--  product left body: description -->
             <div class="product-line-grid-body col-12 col-sm-6 col-md-6">
                 <div class="row align-items-center small-gutters">
@@ -24,7 +21,6 @@
                     </div>
                 </div>
             </div>
-
             <!--  product left body: description -->
             <div class="col-12 col-sm-6 col-md-6 product-line-grid-right product-line-actions">
                 <div class="row align-items-center small-gutters justify-content-end">
@@ -50,25 +46,33 @@
                         {/if}
                         {hook h='displayProductPriceBlock' product=$cart_association type="unit_price"}
                     </div>
-
                     <div class="col col-auto col-md qty">
-                        <form action="{$urls.pages.cart}" method="post">
-                            <input type="hidden" name="id_product" value="{$cart_association.id}">
-                            <input type="hidden" name="token" value="{$static_token}">
-                            <input type="hidden" name="id_product_attribute" value="{$cart_association.id_product_attribute}">
-                            <div class="input-group-add-cart">
-                                <button
-                                        class="btn btn-product-list add-to-cart"
-                                        data-button-action="add-to-cart"
-                                        type="submit"
-                                        {if !$cart_association.add_to_cart_url}
-                                            disabled
-                                        {/if}
-                                >
-                                    {l s='Add' d='Shop.Theme.Actions'}
-                                </button>
-                            </div>
-                        </form>
+                        {if $cart_association.id_product_attribute}
+                            <a
+                                    class="btn btn-product-list"
+                                    href="{$cart_association.url}"
+                            >
+                                {l s='View' d='Shop.Theme.Actions'}
+                            </a>
+                        {else}
+                            <form action="{$urls.pages.cart}" method="post">
+                                <input type="hidden" name="id_product" value="{$cart_association.id}">
+                                <input type="hidden" name="token" value="{$static_token}">
+                                <input type="hidden" name="id_product_attribute" value="{$cart_association.id_product_attribute}">
+                                <div class="input-group-add-cart">
+                                    <button
+                                            class="btn btn-product-list add-to-cart"
+                                            data-button-action="add-to-cart"
+                                            type="submit"
+                                            {if !$cart_association.add_to_cart_url}
+                                                disabled
+                                            {/if}
+                                    >
+                                        {l s='Add' d='Shop.Theme.Actions'}
+                                    </button>
+                                </div>
+                            </form>
+                        {/if}
                     </div>
                     <div class="col col-auto col-md price">
                         <i class="fa fa-times" aria-hidden="true"></i>
@@ -76,8 +80,6 @@
                     <div class="col col-auto"></div>
                 </div>
             </div>
-
         </div>
-
     </li>
 {/foreach}

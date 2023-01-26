@@ -191,7 +191,7 @@ class CartAssociations extends Module
             }
             $sql->join(Product::sqlStock('p', 0));
             $sql->orderBy('ca.position ASC');
-
+            
             $products = Db::getInstance()->executeS($sql);
 
             if (count($products)) {
@@ -209,6 +209,14 @@ class CartAssociations extends Module
                 );
 
                 foreach ($products as $product) {
+                    if (
+                        Configuration::get('PS_STOCK_MANAGEMENT') &&
+                        $product['quantity'] < 1 &&
+                        !Product::isAvailableWhenOutOfStock($product['out_of_stock'])
+                    ) {
+                        continue;
+                    }
+
                     if (!isset($cart_associations[$product['id_product_1']])) {
                         $cart_associations[$product['id_product_1']] = [];
                     }
