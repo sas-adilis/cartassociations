@@ -47,7 +47,7 @@
                         {hook h='displayProductPriceBlock' product=$cart_association type="unit_price"}
                     </div>
                     <div class="col col-auto col-md qty">
-                        {if $cart_association.id_product_attribute}
+                        {if !$allow_add_variant_to_cart_from_listing && $cart_association.id_product_attribute}
                             <a class="btn btn-product-list" href="{$cart_association.url}" >
                                 {l s='View' mod='cartassociations'}
                             </a>

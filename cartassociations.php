@@ -243,6 +243,7 @@ class CartAssociations extends Module
         $cart_associations = Cache::retrieve($cache_id);
         if (isset($cart_associations[$product->id])) {
             $this->context->smarty->assign(array(
+                'allow_add_variant_to_cart_from_listing' => (bool)Configuration::get('PS_ATTRIBUTE_CATEGORY_DISPLAY'),
                 'cart_associations' => $cart_associations[$product->id]
             ));
             return $this->display($this->getLocalPath(), '/views/templates/hook/cart-associations.tpl');
