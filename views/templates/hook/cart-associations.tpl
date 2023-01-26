@@ -14,7 +14,7 @@
                         </a>
                     </div>
                     <div class="col">
-                        <small class="product-advise text-primary">{l s="We recommand" mod="cart_associations"}</small>
+                        <small class="product-advise text-primary">{l s='We recommand' mod='cartassociations'}</small>
                         <div class="product-line-info">
                             <a class="label" href="{$cart_association.url}">{$cart_association.name}</a>
                         </div>
